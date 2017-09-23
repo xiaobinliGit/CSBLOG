@@ -1,377 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Li Xiaobin">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="通过Hexo+GitHub创建自己的博客"/>
+  <meta property="og:description" content="This Blog is for my IT life record" />
+  <meta property="og:site_name" content="Xiaobin&#39;s BLOG"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://xiaobinligit.github.io/CSBLOG"/>
+  
+    <link rel="alternate" href="/atom.xml" title="Xiaobin&#39;s BLOG" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="favicon.ico">
+  
 
-<!-- Head tag -->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="This Blog is for my IT life record">
-    <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/CSBLOG/img/ironman-draw.png">
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <title>
-        
-          通过Hexo+GitHub创建自己的博客 - undefined
-        
-    </title>
+  <!-- Site Title -->
+  <title>Xiaobin's BLOG</title>
 
-    <link rel="canonical" href="https://xiaobinligit.github.io/CSBLOG/CSBLOG/2017/09/17/Hexo-GitHub-Setup/">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/CSBLOG/css/bootstrap.min.css">
+  <!-- Google Analytics -->
+  
 
-    <!-- Custom CSS --> 
-    <link rel="stylesheet" href="/CSBLOG/css/beantech.min.css">
-    
-    <!-- Pygments Highlight CSS -->
-    <link rel="stylesheet" href="/CSBLOG/css/highlight.css">
-
-    <link rel="stylesheet" href="/CSBLOG/css/widget.css">
-
-    <link rel="stylesheet" href="/CSBLOG/css/rocket.css">
-
-    <link rel="stylesheet" href="/CSBLOG/css/signature.css">
-
-    <link rel="stylesheet" href="/CSBLOG/css/toc.css">
-
-    <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ga & ba script hoook -->
-    <script></script>
 </head>
 
-
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
-	<!-- Modified by Yu-Hsuan Yen -->
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        
-            background-image: url('')
-            /*post*/
-        
-    }
-    
-</style>
-
-<header class="intro-header" >
-    <!-- Signature -->
-    <div id="signature">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
-                    <div class="post-heading">
-                        <div class="tags">
-                            
-                              <a class="tag" href="/CSBLOG/tags/#-Blog Setup" title="-Blog Setup">-Blog Setup</a>
-                            
-                        </div>
-                        <h1>通过Hexo+GitHub创建自己的博客</h1>
-                        <h2 class="subheading"></h2>
-                        <span class="meta">
-                            Posted by Li Xiaobin on
-                            2017-09-17
-                        </span>
-                    </div>
-                
+  <body>
+    <!-- Page Header -->
 
 
-                </div>
-            </div>
+<header class="site-header header-background" style="background-image: url(images/timg.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">通过Hexo+GitHub创建自己的博客</p>
+          <p class="subtitle"></p>
         </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/xiaobinliGit/">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:xiaobin_li@163.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </header>
 
-	
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/CSBLOG/">Xiaobin&#39;s BLOG</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/CSBLOG/">Home</a>
-                    </li>
-
-                    
-                    
-                </ul>
-            </div>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-
-    <!-- Main Content -->
-    <!-- Modify by Yu-Hsuan Yen -->
-
-<!-- Post Content -->
 <article>
-    <div class="container">
-        <div class="row">
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Li Xiaobin</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-09-17</span>
+            <span class="time">10:48:16</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
 
-            <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+<a href="/categories/生活日志/">生活日志</a> / <a href="/categories/生活日志/博客建立/">博客建立</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
 
-                <h3 id="摘要-用Hexo和GitHub建立自己的独立博客"><a href="#摘要-用Hexo和GitHub建立自己的独立博客" class="headerlink" title="摘要: 用Hexo和GitHub建立自己的独立博客"></a>摘要: 用Hexo和GitHub建立自己的独立博客</h3><a id="more"></a>
+<a class="tag" href="/tags/Blog-Setup/">#-Blog Setup</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h3 id="摘要-用Hexo和GitHub建立自己的独立博客"><a href="#摘要-用Hexo和GitHub建立自己的独立博客" class="headerlink" title="摘要: 用Hexo和GitHub建立自己的独立博客"></a>摘要: 用Hexo和GitHub建立自己的独立博客</h3><a id="more"></a>
 <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a><font color="#0000FF">缘由</font></h2><p>从本科开始用百度空间记录自己的一些日常，因为自己注册为数不多的一个网站就包含百度，因而顺理成章的通过百度空间来充当自己的博客，而且编辑和主题等功能使用起来还算便捷。随后读硕士的时候，有个课题是WCDMA+NS2网络仿真，那时还通过自己的博客和别人交流了一番，再后来工作就很少touch这块东西了，因为各种笔记和自己的公司在一直支持使用的onenote，随时记录也算方便，但最近突然在学习C++和Cloud的时候翻阅了很多在线资料，发现还是有些博客靠谱，而本地的记录在这时就显得很力不从心了。结果当自己打算重新在百度上翻找自己当年的博客时，居然全部没了，百度空间中的博客功能取消了，于是决心去搭建一个自己的博客，也正好通过这个平台来记录自己工作生活的点滴，做技术，或者更深入的说，做人，还是要积累。<br>在“知乎”一番之后，决定用当下流行的“Hexo+GitHub”,方便快捷，而且通过git多终端同步，最重要的，数据不会丢失，作为一个“攻城狮”，解决这种基本问题是必须的。</p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><font color="#0000FF">简介</font></h2><h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a><font color="#A52A2A">Hexo</font></h3><p>Hexo 是一个快速、简洁且高效，基于Node.js的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页（引用自：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo 文档</a>）。静态的优点就是支持它的环境十分好找，比如GitHub。但相比动态博客，静态博客要频繁改动文件。</p>
 <h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a><font color="#A52A2A">GitHub</font></h3><p>GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。GitHub提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。对于我的博客来说，GitHub就是一个数据仓储中心和网络访问接口</p>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><font color="#0000FF">步骤</font></h2><p>总体来讲可以概括为：软件安装-&gt;GitHub仓储建立-&gt;Hexo部署<br>*1 软件安装</p>
 
-                
-
-                <hr>
-                <!-- Pager -->
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/CSBLOG/2017/09/18/C-Query-to-be-solved/" data-toggle="tooltip" data-placement="top" title="C++ Query to be solved">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/CSBLOG/2017/09/14/Blog Restart/" data-toggle="tooltip" data-placement="top" title="重启博客">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                <!-- duoshuo Share start -->
-                
-                <!-- 多说 Share end-->
-
-                <!-- 多说评论框 start -->
-                
-                <!-- 多说评论框 end -->
-
-                <!-- disqus comment start -->
-                
-                <!-- disqus comment end -->
-            </div>
-            
-            <!-- Tabe of Content -->
-            <!-- Table of Contents -->
-
-                
-            <!-- Sidebar Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
         </div>
+      </div>
     </div>
+  </div>
 </article>
 
 
 
-
-
-
-
-
-
-    <!-- Footer -->
     <!-- Footer -->
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                
-
-                
-
-                
-
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Li Xiaobin 2017 
-                    <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> 
-                    <span style="display: inline-block; margin: 0 5px;">
-                        <i class="fa fa-heart"></i>
-                    </span> 
-                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
-                    </iframe>
-                </p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Copyright By <a target="_blank" href="https://github.com/xiaobinliGit">Li Xiaobin.</a> Contact <a target="_blank" href="mailto:xiaobin_li@163.com"> Mail.</a>
+        <p class="copyright text-muted">
+          Theme by Levblanc<a target="_blank" >.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
     </div>
+  </div>
 </footer>
 
-<!-- jQuery -->
-<script src="/CSBLOG/js/jquery.min.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/CSBLOG/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/CSBLOG/js/hux-blog.min.js"></script>
-
-
-<!-- async load function -->
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
 <script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("https://xiaobinligit.github.io/CSBLOG/CSBLOG/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-
-<!-- Google Analytics -->
-
-
-
-
-<!-- Baidu Tongji -->
-
-
-
-
-
-
-	<a id="rocket" href="#top" class=""></a>
-	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
-    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
-<!-- Image to hack wechat -->
-<img src="https://xiaobinligit.github.io/CSBLOG/CSBLOG/img/icon_wechat.png" width="0" height="0" />
-<!-- Migrate from head to bottom, no longer block render and still work -->
-
-</body>
-
+  </body>
 </html>
+
