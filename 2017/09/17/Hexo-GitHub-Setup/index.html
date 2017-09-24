@@ -101,7 +101,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-09-17</span>
-            <span class="time">22:15:26</span>
+            <span class="time">22:19:11</span>
           </span>
           
           <!--  Categories  -->
@@ -170,8 +170,8 @@
 <h5 id="gt-发布博客"><a href="#gt-发布博客" class="headerlink" title="-&gt;发布博客"></a>-&gt;发布博客</h5><p>一切都准备就绪，最后就是如何发布博客了，发布的原理就是本地通过hexo来生成静态的html文件，然后通过你本地配置的config文件中的git链接来自动push到相应的分支。首先需要配置自己的git登陆信息，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;你的用户名&quot;</div><div class="line">git config --global user.email &quot;你的邮箱&quot;</div></pre></td></tr></table></figure></p>
 <p>接着安装hexo git插件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
 <p>最后的最后，就是发布了：<br>老样子，参考help，输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d -g</div></pre></td></tr></table></figure></p>
-<p>git会先deploy静态html网页，然后push到你之前设置的git分支上去，但是这步可能会提示permission denied，大部分原因是因为ssh认证问题，通过本地生成公钥并拷贝至git ssh设置下就可解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure></p>
-<p>一路回车，不需要任何输入，会在“你的home目录/.ssh”下生成id_rsa.pub文件，把里面的内容全选，拷贝至自己的git ssh 设置下(new SSH key)，就可以实现本地到git的push<br><img src="/CSBLOG/images/Git_SSH.jpg" alt="git2"><br><img src="/CSBLOG/images/Git_SSH1.jpg" alt="git1"><br>至此，大功告成！enjoy your blog!</p>
+<p>git会先deploy静态html网页，然后push到你之前设置的git分支上去，<br><img src="/CSBLOG/images/deploy.jpg" alt="depoly"><br>但是这步可能会提示permission denied，大部分原因是因为ssh认证问题，通过本地生成公钥并拷贝至git ssh设置下就可解决<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure></p>
+<p>一路回车，不需要任何输入，会在“你的home目录/.ssh”下生成id_rsa.pub文件，<br><img src="/CSBLOG/images/Git_SSH2.jpg" alt="git2"><br>把里面的内容全选，拷贝至自己的git ssh 设置下(new SSH key)，就可以实现本地到git的push<br><img src="/CSBLOG/images/Git_SSH.jpg" alt="git2"><br><img src="/CSBLOG/images/Git_SSH1.jpg" alt="git1"><br>至此，大功告成！enjoy your blog!</p>
 
         </div>
       </div>
