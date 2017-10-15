@@ -462,7 +462,7 @@ code {
 html,
 body {
   color: #555;
-  background-color: #fff;
+  background-color: transparent;
   font-size: 100%; /* add PX (or original value) as backup */
   font-size: 100%;
 }
@@ -630,16 +630,20 @@ h6 {
 }
 @media only screen and (max-width: 768px) {
   .post-item-wrapper .date-and-category,
-  .post-item-wrapper .tags {
+  background-color white .date-and-category,
+  .post-item-wrapper .tags,
+  background-color white .tags {
     display: none;
   }
-  .post-item-wrapper .excerpt {
+  .post-item-wrapper .excerpt,
+  background-color white .excerpt {
     width: 100%;
     padding: 0 5%;
     margin: 0;
     float: none;
   }
-  .post-item-wrapper .post-title {
+  .post-item-wrapper .post-title,
+  background-color white .post-title {
     font-size: 1.125rem;
   }
 }
@@ -712,6 +716,7 @@ h6 {
   }
   .post-content {
     font-size: 0.78125rem;
+    background-color: #fff;
   }
 }
 footer {
@@ -730,7 +735,7 @@ footer {
 }
 .pagination > li > a {
   color: #1999ec;
-  background-color: #fff;
+  background-color: transparent;
   border: 1px solid #1999ec;
   border-radius: 0.1875rem;
 }
