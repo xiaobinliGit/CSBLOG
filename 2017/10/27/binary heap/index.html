@@ -156,7 +156,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-10-27</span>
-            <span class="time">22:47:16</span>
+            <span class="time">22:45:17</span>
           </span>
           
           <!--  Categories  -->
@@ -192,7 +192,55 @@
 <p>S = n -log(n) +1 = O(n)</p>
 <p>结论：构造二叉堆的时间复杂度为线性得证</p>
 <p>附最大二叉树构造代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">include <span class="string">"Binary_Heap.hpp"</span></div><div class="line"></div><div class="line"><span class="keyword">void</span> BinaryHeap::createMaxBinaryHeap(<span class="keyword">int</span> index)</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> leftindex = (index&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> rightindex = (index&lt;&lt;<span class="number">1</span>)+<span class="number">2</span>;</div><div class="line">	<span class="keyword">int</span> maxindex = index;</div><div class="line">	<span class="keyword">if</span>(leftindex &lt; array_size &amp;&amp; array_bh[leftindex] &gt; array_bh[maxindex])</div><div class="line">	&#123;</div><div class="line">		maxindex = leftindex;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(rightindex &lt; array_size &amp;&amp; array_bh[rightindex] &gt; array_bh[maxindex])</div><div class="line">	&#123;</div><div class="line">		maxindex = rightindex;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(maxindex!=index)</div><div class="line">	&#123;</div><div class="line">		bhswap(&amp;array_bh[maxindex], &amp;array_bh[index]);</div><div class="line">		createMaxBinaryHeap(maxindex);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> BinaryHeap::genMaxHeap()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> begin;</div><div class="line">	<span class="keyword">for</span>(begin = (array_size<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>; begin&gt;=<span class="number">0</span>; begin--)</div><div class="line">	&#123;</div><div class="line">		createMaxBinaryHeap(begin);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> BinaryHeap::genHeap()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> begin;</div><div class="line">	<span class="keyword">for</span>(begin = array_size<span class="number">-1</span>; begin&gt;=<span class="number">0</span>; begin--)</div><div class="line">	&#123;</div><div class="line">		array_bh.push_back(randomGenerator(<span class="number">103</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> BinaryHeap::getBinaryHeap()</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> begin;</div><div class="line">	<span class="keyword">for</span>(begin = <span class="number">0</span>; begin&lt;array_size; begin++)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;array_bh[begin]&lt;&lt;<span class="string">"\t"</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code>include &quot;Binary_Heap.hpp&quot;
+
+void BinaryHeap::createMaxBinaryHeap(int index)
+{
+	int leftindex = (index&lt;&lt;1)+1;
+	int rightindex = (index&lt;&lt;1)+2;
+	int maxindex = index;
+	if(leftindex &lt; array_size &amp;&amp; array_bh[leftindex] &gt; array_bh[maxindex])
+	{
+		maxindex = leftindex;
+	}
+	if(rightindex &lt; array_size &amp;&amp; array_bh[rightindex] &gt; array_bh[maxindex])
+	{
+		maxindex = rightindex;
+	}
+	if(maxindex!=index)
+	{
+		bhswap(&amp;array_bh[maxindex], &amp;array_bh[index]);
+		createMaxBinaryHeap(maxindex);
+	}
+}
+
+void BinaryHeap::genMaxHeap()
+{
+	int begin;
+	for(begin = (array_size-1)&gt;&gt;1; begin&gt;=0; begin--)
+	{
+		createMaxBinaryHeap(begin);
+	}
+}
+
+void BinaryHeap::genHeap()
+{
+	int begin;
+	for(begin = array_size-1; begin&gt;=0; begin--)
+	{
+		array_bh.push_back(randomGenerator(103));
+	}
+}
+
+void BinaryHeap::getBinaryHeap()
+{
+	int begin;
+	for(begin = 0; begin&lt;array_size; begin++)
+	{
+		cout&lt;&lt;array_bh[begin]&lt;&lt;&quot;\t&quot;;
+	}
+	cout&lt;&lt;endl;
+}</code></pre>
 
         </div>
       </div>

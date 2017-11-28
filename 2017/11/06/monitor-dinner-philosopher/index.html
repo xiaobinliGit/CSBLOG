@@ -156,7 +156,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-11-06</span>
-            <span class="time">22:47:16</span>
+            <span class="time">22:45:17</span>
           </span>
           
           <!--  Categories  -->
@@ -188,7 +188,104 @@
 <h3 id="使用管程解决进程同步问题"><a href="#使用管程解决进程同步问题" class="headerlink" title="使用管程解决进程同步问题"></a>使用管程解决进程同步问题</h3><h4 id="管程解决五个哲学家吃通心面问题"><a href="#管程解决五个哲学家吃通心面问题" class="headerlink" title=" 管程解决五个哲学家吃通心面问题"></a><font color="#330099"> 管程解决五个哲学家吃通心面问题</font></h4><p>首先，引入枚举类型enum {thinking,hungry,eating} state[5]表示哲学家的状态，哲学家i能建立状态state［i］=eating，仅当他的两个邻座不在吃的时候，即state［(i-1)%5］!=eating及state［(i+1)%5］!=eating；另外还要引入条件变量(信号量)：semaphore self[5]，当哲学家i饥饿但又不能获得两把叉子时，进入其信号量等待队列。</p>
 <font color="#B0B0B0" style="font-style:italic">说明: 在释放叉子的时候，唤醒左邻居和右邻居。如果以顺时针编号，对于i号哲学家，(i-1)%5是i号哲学家的右邻居，(i+1)%5是i号哲学家的左邻居。每个哲学家在三个状态(thinking,hungry,eating)中变换，其中是hungry是thinking向eating的过渡状态  </font>
 
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title=" 代码实现"></a><font color="#330099"> 代码实现</font></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">enum</span> &#123;thinking,hungry,eating&#125; state[<span class="number">5</span>];</div><div class="line">semaphore self[<span class="number">5</span>];<span class="comment">//Hoare方法数据结构和enter、wait、signal及leave操作</span></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">InterfaceModule</span> </span></div><div class="line"><span class="class">&#123;</span> <span class="comment">//InterfaceModule是结构体的名字</span></div><div class="line">	semaphore mutex;             <span class="comment">//进程调用管程过程前使用的互斥信号量</span></div><div class="line">	semaphore next;              <span class="comment">//发出signal的进程挂起自己的信号量</span></div><div class="line">	<span class="keyword">int</span> next_count;              <span class="comment">//在next上等待的进程数</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">mutex=<span class="number">1</span>;next=<span class="number">0</span>;next_count=<span class="number">0</span>;<span class="comment">//初始化语句</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">enter</span><span class="params">(InterfaceModule &amp;IM)</span> </span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	P(IM.mutex);             <span class="comment">//互斥进入管程</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">leave</span><span class="params">(InterfaceModule &amp;IM)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span>(IM.next_count&gt;<span class="number">0</span>)       <span class="comment">//判有否发出过signal的进程?</span></div><div class="line">		V(IM.next);          <span class="comment">//有就释放一个发出过signal的进程</span></div><div class="line">	<span class="keyword">else</span></div><div class="line">		V(IM.mutex);         <span class="comment">//否则开放管程</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(semaphore &amp;x_sem,<span class="keyword">int</span> &amp;x_count,InterfaceModule &amp;IM)</span> </span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	x_count++;              <span class="comment">//等资源进程个数加1，x_count初始化为0</span></div><div class="line">	<span class="keyword">if</span>(IM.next_count&gt;<span class="number">0</span>)     <span class="comment">//判有否发出过signal的进程</span></div><div class="line">		V(IM.next);         <span class="comment">//有就释放一个</span></div><div class="line">	<span class="keyword">else</span> </div><div class="line">		V(IM.mutex);        <span class="comment">//否则开放管程</span></div><div class="line">	P(x_sem);               <span class="comment">//这里会一直忙等，等资源进程阻塞自己，x_sem初始化为0</span></div><div class="line">	x_count--;              <span class="comment">//等资源进程个数减1 </span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">signal</span><span class="params">(semaphore &amp;x_sem,<span class="keyword">int</span> &amp;x_count,InterfaceModule &amp;IM)</span> </span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">if</span>(x_count&gt;<span class="number">0</span>) </div><div class="line">	&#123;           <span class="comment">//有等资源进程吗?</span></div><div class="line">		IM.next_count++;       <span class="comment">//发出signal进程个数加1</span></div><div class="line">		V(x_sem);              <span class="comment">//释放一个等资源的进程</span></div><div class="line">		P(IM.next);            <span class="comment">//这里会一直忙等，发出signal进程阻塞自己</span></div><div class="line">		IM.next_count--;       <span class="comment">//发出signal进程个数减1</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> <span class="comment">//初始化列表</span></div><div class="line">IM.mutex=<span class="number">1</span>; </div><div class="line">next=<span class="number">0</span>; </div><div class="line">next_count=<span class="number">0</span>; </div><div class="line">self[i]=<span class="number">0</span>; </div><div class="line">self_count=<span class="number">0</span>; </div><div class="line">state[i]=thinking; </div><div class="line">mutex=<span class="number">1</span>;next=<span class="number">0</span>;next_count=<span class="number">0</span>; </div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//DP实现</span></div><div class="line">type dining_philosophers=monitor</div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> self_count[<span class="number">5</span>];</div><div class="line">	InterfaceModule IM;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)      <span class="comment">//初始化，i为进程号</span></div><div class="line">		state[i]=thinking;</div><div class="line">	define pickup,putdown;</div><div class="line">	use enter,leave,wait,signal；</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">pickup</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;        <span class="comment">//i=0,1,...,4</span></div><div class="line">		enter(IM);</div><div class="line">		state[i]=hungry;</div><div class="line">		test(i);</div><div class="line">		<span class="keyword">if</span>(state[i]!=eating)</div><div class="line">			wait(self[i],self_count[i],IM);</div><div class="line">		leave(IM);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">putdown</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;       <span class="comment">//i=0,1,2,..,4</span></div><div class="line">		enter(IM);</div><div class="line">		state[i]=thinking;</div><div class="line">		test((i<span class="number">-1</span>)%<span class="number">5</span>);</div><div class="line">		test((i+<span class="number">1</span>)%<span class="number">5</span>);</div><div class="line">		leave(IM);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> k)</span>  </span>&#123;       <span class="comment">//k=0,1,...,4</span></div><div class="line">		<span class="keyword">if</span>((state[(k<span class="number">-1</span>)%<span class="number">5</span>]!=eating)&amp;&amp;(state[k]==hungry)</div><div class="line">			&amp;&amp;(state[(k+<span class="number">1</span>)%<span class="number">5</span>]!=eating)) </div><div class="line">		&#123;</div><div class="line">			state[k]=eating;</div><div class="line">			signal(self[k],self_count[k],IM);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	任一个哲学家想吃通心面时调用过程pickup，吃完通心面之后调用过程putdown。           </div><div class="line">	<span class="function">process <span class="title">philosopher_i</span><span class="params">( )</span> </span>&#123;  <span class="comment">//i=0,…,4</span></div><div class="line">		<span class="keyword">while</span>(<span class="literal">true</span>) </div><div class="line">		&#123;</div><div class="line">			thinking( );</div><div class="line">			dining_philosophers.pickup(i);        </div><div class="line">			eating( );</div><div class="line">			dining_philosophers.putdown(i);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title=" 代码实现"></a><font color="#330099"> 代码实现</font></h4><pre><code class="C++">
+enum {thinking,hungry,eating} state[5];
+semaphore self[5];//Hoare方法数据结构和enter、wait、signal及leave操作
+typedef struct InterfaceModule 
+{ //InterfaceModule是结构体的名字
+    semaphore mutex;             //进程调用管程过程前使用的互斥信号量
+    semaphore next;              //发出signal的进程挂起自己的信号量
+    int next_count;              //在next上等待的进程数
+};
+
+mutex=1;next=0;next_count=0;//初始化语句
+
+void enter(InterfaceModule &amp;IM) 
+{
+    P(IM.mutex);             //互斥进入管程
+}
+void leave(InterfaceModule &amp;IM) {
+    if(IM.next_count&gt;0)       //判有否发出过signal的进程?
+        V(IM.next);          //有就释放一个发出过signal的进程
+    else
+        V(IM.mutex);         //否则开放管程
+}
+void wait(semaphore &amp;x_sem,int &amp;x_count,InterfaceModule &amp;IM) 
+{
+    x_count++;              //等资源进程个数加1，x_count初始化为0
+    if(IM.next_count&gt;0)     //判有否发出过signal的进程
+        V(IM.next);         //有就释放一个
+    else 
+        V(IM.mutex);        //否则开放管程
+    P(x_sem);               //这里会一直忙等，等资源进程阻塞自己，x_sem初始化为0
+    x_count--;              //等资源进程个数减1 
+}
+void signal(semaphore &amp;x_sem,int &amp;x_count,InterfaceModule &amp;IM) 
+{
+    if(x_count&gt;0) 
+    {           //有等资源进程吗?
+        IM.next_count++;       //发出signal进程个数加1
+        V(x_sem);              //释放一个等资源的进程
+        P(IM.next);            //这里会一直忙等，发出signal进程阻塞自己
+        IM.next_count--;       //发出signal进程个数减1
+    }
+}
+
+ //初始化列表
+IM.mutex=1; 
+next=0; 
+next_count=0; 
+self[i]=0; 
+self_count=0; 
+state[i]=thinking; 
+mutex=1;next=0;next_count=0; 
+
+
+//DP实现
+type dining_philosophers=monitor
+{
+    int self_count[5];
+    InterfaceModule IM;
+    for (int i=0;i&lt;5;i++)      //初始化，i为进程号
+        state[i]=thinking;
+    define pickup,putdown;
+    use enter,leave,wait,signal；
+    void pickup(int i) {        //i=0,1,...,4
+        enter(IM);
+        state[i]=hungry;
+        test(i);
+        if(state[i]!=eating)
+            wait(self[i],self_count[i],IM);
+        leave(IM);
+    }
+    void putdown(int i) {       //i=0,1,2,..,4
+        enter(IM);
+        state[i]=thinking;
+        test((i-1)%5);
+        test((i+1)%5);
+        leave(IM);
+    }
+    void test(int k)  {       //k=0,1,...,4
+        if((state[(k-1)%5]!=eating)&amp;&amp;(state[k]==hungry)
+            &amp;&amp;(state[(k+1)%5]!=eating)) 
+        {
+            state[k]=eating;
+            signal(self[k],self_count[k],IM);
+        }
+    }
+
+    任一个哲学家想吃通心面时调用过程pickup，吃完通心面之后调用过程putdown。           
+    process philosopher_i( ) {  //i=0,…,4
+        while(true) 
+        {
+            thinking( );
+            dining_philosophers.pickup(i);        
+            eating( );
+            dining_philosophers.putdown(i);
+        }
+    }
+}
+</code></pre>
 <h4 id="状态转换过程详解决"><a href="#状态转换过程详解决" class="headerlink" title=" 状态转换过程详解决"></a><font color="#330099"> 状态转换过程详解决</font></h4><h5 id="A-gt"><a href="#A-gt" class="headerlink" title="(A) -&gt;"></a>(A) -&gt;</h5><p>假设一开始3号哲学家，第一个做pickup，他会很顺畅，在pickup中通过enter(IM)进入管程，修改自身状态state[3]=hungry, 接着test(3)中if条件通过，修改自身状态state[3]=eating, 因为这时候没有进程(哲学家)阻塞在self[3]上，即self_count[3]==0，对照signal(self[3], self_count[3], IM)中的PV实现，实际上此时signal什么也不做。然后，判断if (state[3]!=eating)不成立，因此wait操作也不做。再然后，3号哲学家执行leave(IM)退出管程，以便让其他哲学家进入管程。</p>
 <font color="#0000FF">分析：实际上这里3号哲学家成功的取到他需要的两个叉子。他通过将自己的状态改为eating，对于i=2号哲学家在取叉子的时需要做test(i)，state[i+1]!=eating不成立；对于i=4号哲学家在取叉子的时需要做test(i)，state[i-1]!=eating不成立；从而封堵其左右哲学家转入eating状态，2、4号哲学家不能成功转入eating状态，将执行wait操作，也即在3号哲学家没有执行putdown中的test((i-1)%5)和test((i+1)%5)之前，左右哲学家不能成功取到叉子。</font>
 
